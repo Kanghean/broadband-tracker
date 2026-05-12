@@ -1,9 +1,7 @@
 from src.tracker import SpeedTest
-import schedule
-import time
 import datetime
 
-test = SpeedTest('data', 'tracker.csv')
+test = SpeedTest('data', 'tracker.csv', 'Home')
 
 print(datetime.datetime.now().strftime("%H:%M:%S"))
 print(test)

@@ -5,10 +5,11 @@ from pathlib import Path
 
 class SpeedTest:
 
-    def __init__(self, path_name, file_name):
+    def __init__(self, path_name, file_name, location):
         self.path_name = Path(path_name)
         self.file_name = file_name
-        self.headers = ["Test time", "Upload speed", "Download speed"]
+        self.location = location
+        self.headers = ["Test time", "Upload speed", "Download speed", "Location"]
 
         #makes sure there is a folder
         self.path_name.mkdir(parents=True, exist_ok=True)
@@ -34,7 +35,8 @@ class SpeedTest:
 
         return {self.headers[0] : current_time,
                 self.headers[1] : upload_mbps,
-                self.headers[2] : download_mbps}
+                self.headers[2] : download_mbps,
+                self.headers[3] : self.location}
     
     @staticmethod
     def change_to_mbps(number):
@@ -64,4 +66,4 @@ class SpeedTest:
         return self.path_name / self.file_name
     
     def __repr__(self):
-        return f"Speedtest( Path = {self.path_name}, File = {self.file_name})"
+        return f"Speedtest( Path = {self.path_name}, File = {self.file_name} and at {self.location})"
