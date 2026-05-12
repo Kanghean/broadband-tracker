@@ -23,8 +23,8 @@ class SpeedTest:
         print("Start finding download")
         download = wifi.download()
 
-        upload_mbps = self.change_to_mbps(upload_mbps)
-        download_mbps = self.change_to_mbps(download_mbps)
+        upload_mbps = self.change_to_mbps(upload)
+        download_mbps = self.change_to_mbps(download)
 
         print(f"The upload speed is {upload_mbps:.2f}")
         print(f"The download speed is {download_mbps:.2f}")
@@ -41,7 +41,7 @@ class SpeedTest:
 
         #makes sure there is a folder
         self.path_name.mkdir(parents=True, exist_ok=True)
-        file_location = self.path_name / self.file_name
+        file_location = self.csv_file
 
         #checks if the file exists 
         need_headers = not file_location.exists() or file_location.stat().st_size == 0
@@ -58,3 +58,10 @@ class SpeedTest:
         results = self.measure()
         self.save_data(results)
         print("Data added to csv")
+
+    @property
+    def csv_file(self):
+        return self.path_name / self.file_name
+    
+    def __repr__(self):
+        return f"Speedtest({self.path_name, self.file_name})"
