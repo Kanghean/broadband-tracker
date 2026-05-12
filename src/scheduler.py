@@ -4,7 +4,7 @@ import time
 import datetime
 import speedtest
 
-test = SpeedTest('data', 'tracker.csv')
+test = SpeedTest('data', 'tracker.csv', 'Home')
 
 def safe_to_run():
 
@@ -24,7 +24,7 @@ def safe_to_run():
         print((f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Something happened {Exception}"))
 
 print(datetime.datetime.now().strftime("%H:%M:%S"))
-schedule.every().minute.at(":00").do(safe_to_run)
+schedule.every().hour.at(":00").do(safe_to_run)
 print(test)
 
 while True:
