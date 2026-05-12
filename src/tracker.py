@@ -10,6 +10,9 @@ class SpeedTest:
         self.file_name = file_name
         self.headers = ["Test time", "Upload speed", "Download speed"]
         
+        #makes sure there is a folder
+        self.path_name.mkdir(parents=True, exist_ok=True)
+        
     def measure(self):
         current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(current_time)
@@ -39,8 +42,6 @@ class SpeedTest:
     
     def save_data(self, results):
 
-        #makes sure there is a folder
-        self.path_name.mkdir(parents=True, exist_ok=True)
         file_location = self.csv_file
 
         #checks if the file exists 
