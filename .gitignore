@@ -1,3 +1,10 @@
+# Ignore local telemetric data logs
 data/
+*.csv
+
+# Ignore compiled graphical output reports
+*.png
+
+# Ignore Jupyter Notebook background caching checkpoints
+.ipynb_checkpoints/
 __pycache__/
-*.pyc
