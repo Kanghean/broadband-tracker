@@ -4,7 +4,7 @@ import time
 import datetime
 import speedtest
 
-test = SpeedTest('data', 'tracker.csv', 'Home')
+test = SpeedTest('data', 'tracker2.csv')
 
 def safe_to_run():
 

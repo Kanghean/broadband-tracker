@@ -5,11 +5,10 @@ from pathlib import Path
 
 class SpeedTest:
 
-    def __init__(self, path_name, file_name, location):
+    def __init__(self, path_name, file_name,):
         self.path_name = Path(path_name)
         self.file_name = file_name
-        self.location = location
-        self.headers = ["Test time", "Upload speed", "Download speed", "Location"]
+        self.headers = ["Test time", "Upload speed", "Download speed", "Latency"]
 
         #makes sure there is a folder
         self.path_name.mkdir(parents=True, exist_ok=True)
@@ -21,6 +20,9 @@ class SpeedTest:
         wifi = speedtest.Speedtest()
         wifi.get_best_server()
 
+        print("Start finding Latency")
+        latency = wifi.results.ping
+
         print("Start finding upload")
         upload = wifi.upload()
 
@@ -30,13 +32,14 @@ class SpeedTest:
         upload_mbps = SpeedTest.change_to_mbps(upload)
         download_mbps = SpeedTest.change_to_mbps(download)
 
-        print(f"The upload speed is {upload_mbps:.2f}")
-        print(f"The download speed is {download_mbps:.2f}")
+        print(f"The upload speed is {upload_mbps:.2f} mbps")
+        print(f"The download speed is {download_mbps:.2f} mbps")
+        print(f"The latency speed is {latency:.2f} ms")
 
         return {self.headers[0] : current_time,
                 self.headers[1] : upload_mbps,
                 self.headers[2] : download_mbps,
-                self.headers[3] : self.location}
+                self.headers[3] : latency}
     
     @staticmethod
     def change_to_mbps(number):
